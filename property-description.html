@@ -335,6 +335,65 @@
       </section>
 
     </main>
+      <!--*****************  Support ***************** -->
+      <div id="support">
+        <div id="support-header">
+          <div class="support-user">
+            <div class="img">
+              <img src="asset/img/support.png" alt="">
+            </div>
+            <h5 class="name">Charsac AI</h5>
+          </div>
+          <span class="close-support" id="close-support"><i class="fa fa-times"></i></span>
+        </div>
+        <div id="support-body">
+          <div id="load-previous">
+            <span >
+              Load previous conversations
+            </span>
+          </div>
+          <span id="date">Today</span>
+          <div class="support-chat ai-user">
+            <div class="info">
+              <div class="user-info">
+                <div class="img">
+                  <img src="asset/img/support.png" alt="">
+                </div>
+                <h6 class="user-name">Charsac AI</h6>
+              </div>
+              <small>7:27 PM</small>
+            </div>
+            <div class="message">
+              Hi, I'm your support assistant. What can I help you with?
+            </div>
+          </div>
+          <div class="support-chat human-user">
+            <div class="info">
+              <div class="user-info">
+                <h6 class="img">
+                  O
+                </h6>
+                <h6 class="user-name">Oluchi Cassidy</h6>
+              </div>
+              <small>7:27 PM</small>
+            </div>
+            <div class="message">
+              I'm looking for a two bedroom apartment around Mile 50, Abakaliki
+            </div>
+          </div>
+        </div>
+        <div id="support-footer">
+          <input type="text" id="message-input" placeholder="Your message">
+          <button id="send-message"><i class="fa fa-paper-plane"></i></button>
+        </div>
+      </div>
+      <div id="start-support">
+        <div class="animateit"></div>
+        <div class="img">
+          <img src="asset/img/support.png" alt="support">
+        </div>
+      </div>
+      <!--*****************  Support End ***************** -->
 
       <!--*****************  Footer section ***************** -->
       <footer>
@@ -403,6 +462,62 @@
         }
 
     });
+</script>
+  <script>
+  $(document).ready(function(){
+    
+    $('#start-support').on("click", function(){
+        $(this).fadeOut();
+        $('#support').fadeIn();
+    })
+
+    
+    $('#close-support').on("click", function(){
+        $("#start-support").fadeIn();
+        $('#support').fadeOut();
+    })
+
+
+
+    $("#send-message").on("click", function(){
+      SendMessage();
+    });
+
+    $('#message-input').on('keydown', function(event){
+      if(event.key == "Enter"){
+        SendMessage();
+      }
+    })
+
+    function SendMessage()
+    {
+      let inputTag = $('#message-input');
+      let message = inputTag.val();
+      let chatboard = $('#support-body');
+      let html = `
+          <div class="support-chat human-user">
+            <div class="info">
+              <div class="user-info">
+                <h6 class="img">
+                  O
+                </h6>
+                <h6 class="user-name">Oluchi Cassidy</h6>
+              </div>
+              <small>7:27 PM</small>
+            </div>
+            <div class="message">
+              ${message}
+            </div>
+          </div>
+      `;
+
+      if(message.trim() != ""){
+        chatboard.append(html).scrollTop(chatboard[0].scrollHeight);
+      }
+
+      inputTag.val('');
+    }
+  })
 </script>
 </body>
 </html>
